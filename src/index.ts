@@ -6,12 +6,14 @@ import { Service } from './service';
 import { mongoConnection } from './dbconfig';
 import { validateRequest } from './validator';
 import { schema } from './joi-schemas';
+import cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3000;
 mongoConnection.initMongo();
 
 app.use(bodyParser.json())
+app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
   res.send(new Service().helloFromService())
