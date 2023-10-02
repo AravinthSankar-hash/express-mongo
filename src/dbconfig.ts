@@ -4,7 +4,7 @@ class MongoConnection {
     private dbName = process.env.DB_NAME || 'dump';
     private dbPort = process.env.DB_PORT || 27017;
     private dbHost: string = process.env.DB_HOST || 'localhost';
-    private url: string = `mongodb://${this.dbHost}:${this.dbPort}/${this.dbName}`;
+    private url: string = `mongodb://aravinth:12345@${this.dbHost}:${this.dbPort}/${this.dbName}?authSource=devdump`;
     private client: MongoClient;
 
     constructor() {
