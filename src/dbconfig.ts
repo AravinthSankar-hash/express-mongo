@@ -17,7 +17,10 @@ class MongoConnection {
         }
         this.client.connect().then(val => {
             console.info(`[DB]: Mongo is running at ${this.dbPort}`);
-        });
+        }).catch(error => {
+            console.info(error);
+            console.info(`[DB]: Error in connecting to Mongo`);
+        }); 
     }
 
     getDb() {

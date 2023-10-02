@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 
 import { Service } from './service';
@@ -13,11 +13,11 @@ mongoConnection.initMongo();
 
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send(new Service().helloFromService())
 });
 
-app.post('/feedback', async (req, res) => {
+app.post('/feedback', async (req: Request, res: Response) => {
   const { error } = validateRequest(req.body, schema.feedback);
   if (error) {
     res.status(400).send({ message: 'Bad Request', data: error.details, statusCode: 400 });
